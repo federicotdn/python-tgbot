@@ -39,7 +39,8 @@ class ImgCmd(command.BotCommand):
 
 	def set_bot_config(self, cfg):
 		super().set_bot_config(cfg)
-		self._google_cx = self._bot_config['image']['google-cx']
-		self._google_api_key = self._bot_config['image']['google-api-key']
+		name = self.get_attribute('name')
+		self._google_cx = self._bot_config[name]['google-cx']
+		self._google_api_key = self._bot_config[name]['google-api-key']
 
 command_instance = ImgCmd(commands = ['image', 'i'], name = 'image')
