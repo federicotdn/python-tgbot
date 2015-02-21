@@ -1,0 +1,3 @@
+[submodule "commands/wikiquote"]
+	path = commands/wikiquote
+	url = git@github.com:federicotdn/python-wikiquotes.git

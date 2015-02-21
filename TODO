@@ -1,0 +1,3 @@
+ - enable text-to-speech for all commands
+ - make msg from/to users available to commands
+ - PEP8 formatting

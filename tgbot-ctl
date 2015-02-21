@@ -1,0 +1,33 @@
+#!/bin/sh
+
+PYTHON_SCRIPT="tgbot.py"
+
+print_usage()
+{
+	echo "Usage:"
+	echo "	./tgbot.sh start | startbg | stop"
+}
+
+if [ $# -ne 1 -a $# -ne 2 ]; then
+	print_usage
+	exit 1
+fi
+
+case $1 in
+	start)
+		python3 $PYTHON_SCRIPT $2
+		;;
+
+	startbg)
+		nohup python3 $PYTHON_SCRIPT $2 > /dev/null 2>&1 &
+		;;
+
+	stop)
+		printf "safe_quit\n" | netcat -U telegram.socket
+		;;
+
+	*)
+		print_usage
+		exit 1
+		;;
+esac
