@@ -5,4 +5,4 @@ class HelloCmd(command.BotCommand):
 		return msg.BotMsg('Hello there.')
 
 
-command_instance = HelloCmd(commands = ['hello'], name = 'hello')
+command_instance = HelloCmd(bindings = ['hello'], name = 'hello')

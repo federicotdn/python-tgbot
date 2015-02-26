@@ -2,7 +2,7 @@ class BotCommand:
 
 	_default_attributes = {
 		'allow-speech': False,
-		'commands': [],
+		'bindings': [],
 		'name': 'unnamed',
 		'enabled': True
 	}

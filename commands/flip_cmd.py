@@ -11,4 +11,4 @@ class FlipCmd(command.BotCommand):
 		return msg.BotMsg('Coin flip: ' + answer)
 
 
-command_instance = FlipCmd(commands = ['flip'], name = 'flip')
+command_instance = FlipCmd(bindings = ['flip'], name = 'flip')

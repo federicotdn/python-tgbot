@@ -18,4 +18,4 @@ class StatusCmd(command.BotCommand):
     def process_output(self, command):
       return subprocess.check_output(command.split()).decode().strip()
 
-command_instance = StatusCmd(commands = ['status'], name = 'status')
+command_instance = StatusCmd(bindings = ['status'], name = 'status')

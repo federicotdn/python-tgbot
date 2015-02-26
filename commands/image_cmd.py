@@ -40,7 +40,12 @@ class ImgCmd(command.BotCommand):
 	def set_bot_config(self, cfg):
 		super().set_bot_config(cfg)
 		name = self.get_attribute('name')
-		self._google_cx = self._bot_config[name]['google-cx']
+		img_cfg = self._bot_config[name]
+		if any([k not in img_cfg for k in ['google-cx', 'google-api-key']]):
+			self._attributes['enabled'] = False
+			return
+
+		self._google_cx = ['google-cx']
 		self._google_api_key = self._bot_config[name]['google-api-key']
 
-command_instance = ImgCmd(commands = ['image', 'i'], name = 'image')
+command_instance = ImgCmd(bindings = ['image', 'i'], name = 'image')

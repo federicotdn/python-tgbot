@@ -14,7 +14,7 @@ $ ./tgbot-ctl stop # stop the bot
 
 The bot is configured using the `bot.config` file.
 
-Make sure to run `bin/telegram-cli -k key.txt` at least once before starting the bot, as you will need to setup your phone number first.
+Make sure to run `bin/telegram-cli -k bin/telegram.key` at least once before starting the bot, as you will need to setup your phone number first.
 
 TODO: Finish writing instructions.
 
@@ -23,7 +23,7 @@ TODO: Finish writing instructions.
 - `flip_cmd.py`: returns 'heads' or 'tails' at random.
 - `hello_cmd.py`: returns 'hello'.
 - `image_cmd.py`: searches Google images, and uploads the first image found.  Requires two configuration variables to be set.  Get them at the [Google Custom Search](https://www.google.com/cse/all) site and at the [Google Developers Console](https://console.developers.google.com).
-- `rand_line_cmd.py`: return a line from a text file at random.  The seed file/s should be specified in the config file.
+- `rand_line_cmd.py`: return a line from a text file at random.  The seed file/s need to be specified in the config file.
 - `status_cmd.py`: print status information.
 - `wikipedia_cmd.py`: returns a summary of the specified Wikipedia article.  Requires the `wikipedia` Python module (install it using `pip`).
 - `quote_cmd.py`: returns a quote from the specified Wikiquote article.   Requires the `wikiquote` Python module (included as git submodule).

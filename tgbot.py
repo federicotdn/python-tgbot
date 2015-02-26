@@ -12,6 +12,7 @@ CMD_FILE_SUFFIX = '_cmd'
 CHEVRON_L = '<<<'
 CHEVRON_R = '>>>'
 DEFAULT_CFG_PATH = 'bot.config'
+SOCK_NAME = 'telegram.socket'
 
 
 def main():
@@ -54,13 +55,13 @@ def load_commands(bot_cfg):
 				continue
 
 			cmd_instance = mod.command_instance
+			cmd_instance.set_bot_config(bot_cfg)
 
 			enabled = cmd_instance.get_attribute('enabled')
 			if not enabled:
 				continue
 
-			cmd_instance.set_bot_config(bot_cfg)
-			for cmd_name in cmd_instance.get_attribute('commands'):
+			for cmd_name in cmd_instance.get_attribute('bindings'):
 				cmd_dict[cmd_name] = cmd_instance
 
 	return cmd_dict
@@ -89,7 +90,6 @@ def read_line(tg_proc):
 
 
 def start_telegram_cli(bot_cfg):
-	socket_name = bot_cfg['bot']['tg-socket']
 	cli_path = bot_cfg['bot']['cli-path'] + ' ' + bot_cfg['bot']['cli-args']
 	print('Executing: ' + cli_path)
 
@@ -103,7 +103,7 @@ def start_telegram_cli(bot_cfg):
 
 		if proc.poll() is not None:
 			print('telegram-cli ended prematurely.')
-			print('NOTE: Make sure socket "' + socket_name + '" does not exist already.')
+			print('NOTE: Make sure socket "' + SOCK_NAME + '" does not exist already.')
 			sys.exit(1)
 		return proc
 	except:
@@ -115,12 +115,10 @@ def open_telegram_socket(bot_cfg):
 	tg_socket = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
 
 	try:
-		sock_name = bot_cfg['bot']['tg-socket']
-
-		tg_socket.connect(sock_name)
+		tg_socket.connect(SOCK_NAME)
 		return tg_socket
 	except:
-		print('Unable to connect to telegram-cli socket.')
+		print('Unable to connect to telegram-cli socket (telegram.socket).')
 		sys.exit(1)
 
 
@@ -140,7 +138,8 @@ def begin(cmd_dict, bot_cfg):
 			if cmd in cmd_dict:
 				cmd_instance = cmd_dict[cmd]
 				reply = cmd_instance.run(dest, contents)
-				reply.send_reply(dest, tg_socket)
+				if reply:
+					reply.send_reply(dest, tg_socket)
 
 
 if __name__ == '__main__':

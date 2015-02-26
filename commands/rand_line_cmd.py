@@ -4,15 +4,19 @@ from bot import command, msg
 
 class RandLineCmd(command.BotCommand):
 	def run(self, dest, contents):
-		if contents[0][1:] == 'fortune':
-			return msg.BotMsg(random.choice(self.f1).strip())
-		else:
-			return msg.BotMsg(random.choice(self.f2).strip())
+		lines = self._bindings_map[contents[0][1:]]
+		return msg.BotMsg(random.choice(lines).strip())
 
 	def set_bot_config(self, cfg):
 		super().set_bot_config(cfg)
 		name = self.get_attribute('name')
-		self.f1 = open(self._bot_config[name]['seed-path1']).readlines()
-		self.f2 = open(self._bot_config[name]['seed-path2']).readlines()
+		files_cfg = self._bot_config[name]
 
-command_instance = RandLineCmd(commands = ['mauro', 'fortune'], name = 'rand_line')
+		self._bindings_map = {}
+		for val in files_cfg.values():
+			filename, binding = [p.strip() for p in val.split(',')]
+			with open(filename) as f:
+				self._bindings_map[binding] = f.readlines()
+				self._attributes['bindings'].append(binding)
+
+command_instance = RandLineCmd(name = 'rand_line')

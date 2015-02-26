@@ -24,4 +24,4 @@ class WikiCmd(command.BotCommand):
 
 		return msg.BotMsg(summary)
 
-command_instance = WikiCmd(commands = ['wiki', 'w'], name = 'wiki')
+command_instance = WikiCmd(bindings = ['wiki', 'w'], name = 'wiki')

@@ -23,4 +23,4 @@ class QuoteCmd(command.BotCommand):
 
 		return msg.BotMsg('Query was too ambiguous.')
 
-command_instance = QuoteCmd(commands = ['quote', 'q'], name = 'quote')
+command_instance = QuoteCmd(bindings = ['quote', 'q'], name = 'quote')
