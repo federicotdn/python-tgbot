@@ -27,5 +27,6 @@ TODO: Finish writing instructions.
 - `status_cmd.py`: print status information.
 - `wikipedia_cmd.py`: returns a summary of the specified Wikipedia article.  Requires the `wikipedia` Python module (install it using `pip`).
 - `quote_cmd.py`: returns a quote from the specified Wikiquote article.   Requires the `wikiquote` Python module (included as git submodule).
+- `wolfram_cmd.py`: returns results from WolframAlpha.  Requires a WolframAlpha `appid` to be specified in the config file.
 
 To disable a command, delete the corresponding `_cmd.py` file.
