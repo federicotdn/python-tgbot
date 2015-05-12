@@ -4,6 +4,12 @@ Bot for Telegram written in Python 3.4.  Uses the `wikipedia` and [`wikiquote`](
 
 ## Installation
 
+Get the code:
+
+```bash
+$ git clone --recursive git@github.com:federicotdn/python-tgbot.git
+```
+
 Place the [`telegram-cli`](https://github.com/vysheng/tg) binary and your Telegram secret key (`telegram.key` text file) on the project's `bin` directory.  Start/stop the bot using the `tgbot-ctl` script:
 
 ```bash
