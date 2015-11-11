@@ -2,6 +2,10 @@
 
 Bot for Telegram written in Python 3.4.  Uses the `wikipedia` and [`wikiquote`](https://github.com/federicotdn/python-wikiquotes) modules.
 
+## Note: Deprecated
+
+Telegram now has an [official bot API](https://core.telegram.org/bots), which this project does not use.
+
 ## Installation
 
 Get the code:
